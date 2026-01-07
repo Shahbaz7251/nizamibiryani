@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Royal Handi | Indulgent Hyderabadi Dum Biryani</title>
+    <meta name="description" content="A royal culinary journey through the secrets of Nizami spices and slow-cooked perfection.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Playfair for Drama, Outfit for Support -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        saffron: '#FF9933',
+                        biryaniBrown: '#3E2723',
+                        biryaniGreen: '#1B5E20',
+                        gheeGold: '#D4AF37',
+                        charcoal: '#1A1A1A',
+                        offWhite: '#FAF9F6',
+                        warmSand: '#F5E6CC',
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'hero-zoom': 'heroScale 20s infinite alternate ease-in-out',
+                        'steam': 'steamMove 10s infinite linear',
+                        'float': 'floatEffect 6s infinite ease-in-out',
+                        'pulse-glow': 'pulseGlow 4s infinite ease-in-out',
+                    },
+                    keyframes: {
+                        heroScale: {
+                            '0%': { transform: 'scale(1) rotate(0deg)' },
+                            '100%': { transform: 'scale(1.1) rotate(1deg)' },
+                        },
+                        steamMove: {
+                            '0%': { transform: 'translateY(0) translateX(0) scale(1)', opacity: '0.1' },
+                            '50%': { transform: 'translateY(-20px) translateX(10px) scale(1.1)', opacity: '0.2' },
+                            '100%': { transform: 'translateY(-40px) translateX(-10px) scale(1)', opacity: '0.1' },
+                        },
+                        floatEffect: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { filter: 'drop-shadow(0 0 10px rgba(255,153,51,0.2))' },
+                            '50%': { filter: 'drop-shadow(0 0 25px rgba(255,153,51,0.6))' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base Styling - Cinematic & Rich */
+        body { 
+            background: #121212;
+            color: #FAF9F6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Grain Texture Overlay */
+        .grain-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/black-paper.png');
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Navigation - Transparent to Rich Spiced Cream */
+        .glass-nav {
+            background: rgba(0, 0, 0, 0);
+            backdrop-filter: blur(0px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-nav.scrolled {
+            background: rgba(26, 26, 26, 0.98);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        /* Hero: The Atmospheric Fire */
+        .hero-vignette {
+            background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.8) 100%);
+        }
+        .hero-bg-container {
+            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        }
+
+        /* Cinematic Food Filter - Maximum Appetizing */
+        .food-glamour {
+            filter: saturate(1.2) contrast(1.15) brightness(1.1);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Indulgent Buttons - Edible & Thick */
+        .btn-indulge {
+            height: 60px;
+            padding: 0 3rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            box-shadow: 0 20px 40px -10px rgba(255, 153, 51, 0.3), inset 0 2px 4px rgba(255,255,255,0.2);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            text-align: center;
+        }
+        .btn-indulge::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.6s;
+        }
+        .btn-indulge:hover::after { left: 100%; }
+        .btn-indulge:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 30px 60px -15px rgba(255, 153, 51, 0.5);
+        }
+
+        /* Cards as Weighted "Plates" */
+        .plate-card {
+            background: rgba(250, 249, 246, 0.03);
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .plate-card:hover {
+            background: rgba(250, 249, 246, 0.06);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transform: translateY(-15px);
+            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.6);
+        }
+        .image-pop {
+            transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+        }
+        .plate-card:hover .image-pop {
+            transform: scale(1.1) rotate(-5deg);
+            filter: drop-shadow(0 40px 80px rgba(0,0,0,0.7));
+        }
+
+        /* Layered Sections */
+        .section-indulge {
+            position: relative;
+            background: #1A1A1A;
+            margin-top: -60px;
+            border-radius: 60px 60px 0 0;
+            box-shadow: 0 -30px 80px rgba(0,0,0,0.5);
+        }
+
+        /* Typography character */
+        .drama-title {
+            letter-spacing: -0.03em;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        .warm-text {
+            color: rgba(250, 249, 246, 0.6);
+            line-height: 1.8;
+        }
+
+        /* Animated Steam Overlay */
+        .steam-overlay {
+            position: absolute;
+            top: 20%; left: 0%; width: 100%; height: 60%;
+            background: url('https://www.transparenttextures.com/patterns/cloudy-day.png');
+            opacity: 0.1;
+            filter: blur(10px);
+            pointer-events: none;
+        }
+
+        /* Mobile Optimization Fixes */
+        @media (max-width: 768px) {
+            .btn-indulge {
+                height: 56px;
+                padding: 0 1.5rem;
+                font-size: 0.875rem !important;
+                letter-spacing: 0.02em;
+            }
+            .drama-title {
+                font-size: 4.5rem !important;
+                line-height: 0.9 !important;
+            }
+            .section-indulge {
+                margin-top: -40px;
+                border-radius: 40px 40px 0 0;
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+            .plate-card {
+                padding: 2.5rem 1.5rem !important;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden">
+
+    <div class="grain-overlay"></div>
+
+    <!-- Navigation: Royal Glow -->
+    <nav class="fixed top-0 w-full z-[100] glass-nav">
+        <div class="max-w-7xl mx-auto px-10 py-8 flex justify-between items-center">
+            <div class="flex items-center space-x-2 animate-pulse-slow">
+                <span class="text-4xl font-black font-serif text-offWhite tracking-tighter">The Royal <span class="text-saffron italic">Handi</span></span>
+            </div>
+            <div class="hidden lg:flex space-x-12 font-bold uppercase text-[11px] tracking-[0.4em] text-offWhite/50">
+                <a href="#home" class="hover:text-gheeGold transition-all">Heritage</a>
+                <a href="#menu" class="hover:text-gheeGold transition-all">Plates</a>
+                <a href="#secret" class="hover:text-gheeGold transition-all">The Secret</a>
+            </div>
+            <a href="tel:+911234567890" class="btn-indulge bg-gheeGold text-biryaniBrown hidden sm:flex items-center gap-3">
+                Order Feast
+            </a>
+            <div class="sm:hidden flex items-center">
+                <a href="tel:+911234567890" class="w-12 h-12 bg-gheeGold text-biryaniBrown rounded-full flex items-center justify-center shadow-lg">
+                    <i data-lucide="phone" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section: The Smoky Atmosphere -->
+    <section id="home" class="relative h-screen min-h-[900px] w-full flex items-center justify-center text-center px-10 overflow-hidden">
+        <!-- Background Layer -->
+        <div class="absolute inset-0 hero-bg-container pointer-events-none">
+            <div class="absolute inset-0 bg-[url('C:/Users/DELL/.gemini/antigravity/brain/d95a058a-c18b-49fc-a27b-5a403607d2df/hero_biryani_1767765254503.png')] bg-cover bg-center animate-hero-zoom opacity-60 food-glamour"></div>
+        </div>
+        <div class="absolute inset-0 hero-vignette bg-black/40 lg:bg-transparent"></div>
+        <div class="steam-overlay animate-steam"></div>
+        
+        <!-- Content Layer -->
+        <div class="relative z-20 max-w-5xl" data-aos="zoom-out-up" data-aos-duration="2000">
+            <span class="text-saffron font-bold tracking-[0.6em] uppercase text-xs mb-10 block drop-shadow-2xl">Hand-picked Spices. Slow Fire.</span>
+            <h1 class="text-7xl lg:text-[9.5rem] font-black font-serif text-offWhite leading-[0.85] mb-12 drama-title italic">
+                Divine <br>
+                <span class="text-saffron not-italic uppercase">Indulgence</span>
+            </h1>
+            <p class="text-xl lg:text-3xl text-offWhite/80 mb-16 max-w-4xl mx-auto font-light italic leading-relaxed">
+                Experience the magic of authentic Hyderabadi Dum Biryani, where every grain carries a legacy of <span class="text-gheeGold font-serif italic">Nizami Royalty</span>.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-8 justify-center items-center">
+                <a href="#menu" class="btn-indulge bg-saffron text-white text-xl">
+                    View the Feast
+                </a>
+                <a href="https://wa.me/911234567890" class="btn-indulge bg-transparent border-2 border-offWhite/20 text-offWhite text-xl hover:bg-offWhite hover:text-biryaniBrown">
+                    Reserve Now
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-30">
+            <span class="text-[10px] uppercase tracking-[0.4em] font-black">Scroll to Explore</span>
+            <i data-lucide="chevron-down" class="animate-bounce"></i>
+        </div>
+    </section>
+
+    <!-- The Feast (Menu) Section: Floating Plates -->
+    <section id="menu" class="py-48 px-10 section-indulge">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-40" data-aos="fade-up">
+                <h2 class="text-saffron font-bold tracking-[0.5em] uppercase text-xs mb-6 block">Culinary Masterpieces</h2>
+                <h3 class="text-6xl lg:text-8xl font-black font-serif italic text-offWhite tracking-tighter">Signature Plates</h3>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-16 lg:gap-24">
+                <!-- Plate 1 -->
+                <div class="plate-card p-12 group flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative mt-0 lg:-mt-40 mb-12 group-hover:animate-float">
+                        <img src="C:/Users/DELL/.gemini/antigravity/brain/d95a058a-c18b-49fc-a27b-5a403607d2df/mutton_biryani_card_1767765275209.png" 
+                             alt="Mutton" class="w-full aspect-square lg:w-80 lg:h-80 object-cover rounded-3xl lg:rounded-full image-pop food-glamour">
+                        <div class="absolute -bottom-4 right-0 bg-gheeGold text-biryaniBrown p-4 rounded-full font-black text-xs rotate-12 shadow-2xl">ROYAL PICK</div>
+                    </div>
+                    <h4 class="text-3xl lg:text-4xl font-black font-serif italic mb-6 text-saffron">Royal Mutton Dum</h4>
+                    <p class="warm-text mb-12 lg:px-8 italic">Layered with 24 secret spices and tender lamb, slow-cooked for 12 hours under a dough seal.</p>
+                    <div class="mt-auto w-full flex flex-col lg:flex-row items-center justify-between border-t border-white/10 pt-8 gap-6">
+                        <span class="text-4xl font-black text-gheeGold font-serif italic">₹449</span>
+                        <a href="#" class="btn-indulge bg-offWhite text-charcoal w-full lg:w-auto h-14 lg:h-12 px-8 text-sm lg:text-xs font-black shadow-none hover:bg-saffron hover:text-white">ADD TO FEAST</a>
+                    </div>
+                </div>
+
+                <!-- Plate 2 -->
+                <div class="plate-card p-12 group flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="relative mt-0 lg:-mt-40 mb-12 group-hover:animate-float">
+                        <img src="C:/Users/DELL/.gemini/antigravity/brain/d95a058a-c18b-49fc-a27b-5a403607d2df/chicken_biryani_card_1767765291920.png" 
+                             alt="Chicken" class="w-full aspect-square lg:w-80 lg:h-80 object-cover rounded-3xl lg:rounded-full image-pop food-glamour">
+                    </div>
+                    <h4 class="text-3xl lg:text-4xl font-black font-serif italic mb-6 text-saffron">Nizami Chicken</h4>
+                    <p class="warm-text mb-12 lg:px-8 italic">Succulent chicken pieces marinated in curd and hand-pounded spices for a smoky fire aroma.</p>
+                    <div class="mt-auto w-full flex flex-col lg:flex-row items-center justify-between border-t border-white/10 pt-8 gap-6">
+                        <span class="text-4xl font-black text-gheeGold font-serif italic">₹349</span>
+                        <a href="#" class="btn-indulge bg-offWhite text-charcoal w-full lg:w-auto h-14 lg:h-12 px-8 text-sm lg:text-xs font-black shadow-none hover:bg-saffron hover:text-white">ADD TO FEAST</a>
+                    </div>
+                </div>
+
+                <!-- Plate 3 -->
+                <div class="plate-card p-12 group flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="600">
+                    <div class="relative mt-0 lg:-mt-40 mb-12 group-hover:animate-float">
+                        <img src="C:/Users/DELL/.gemini/antigravity/brain/d95a058a-c18b-49fc-a27b-5a403607d2df/veg_biryani_card_1767765309615.png" 
+                             alt="Veg" class="w-full aspect-square lg:w-80 lg:h-80 object-cover rounded-3xl lg:rounded-full image-pop food-glamour">
+                    </div>
+                    <h4 class="text-3xl lg:text-4xl font-black font-serif italic mb-6 text-saffron">Shahi Paneer Dum</h4>
+                    <p class="warm-text mb-12 lg:px-8 italic">A harvest of fresh farmhouse vegetables and organic paneer, layered with saffron milk rice.</p>
+                    <div class="mt-auto w-full flex flex-col lg:flex-row items-center justify-between border-t border-white/10 pt-8 gap-6">
+                        <span class="text-4xl font-black text-gheeGold font-serif italic">₹299</span>
+                        <a href="#" class="btn-indulge bg-offWhite text-charcoal w-full lg:w-auto h-14 lg:h-12 px-8 text-sm lg:text-xs font-black shadow-none hover:bg-saffron hover:text-white">ADD TO FEAST</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Secret: Dark Indulgent Story -->
+    <section id="secret" class="py-48 px-10 bg-[#121212]">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-32 items-center">
+                <div data-aos="fade-right">
+                    <span class="text-saffron font-black uppercase text-xs tracking-[0.5em] mb-10 block">The Legacy</span>
+                    <h3 class="text-6xl lg:text-8xl font-black font-serif italic text-offWhite mb-12 leading-[0.95] tracking-tighter">Slow Cooked. <br> Deeply Loved.</h3>
+                    <p class="text-2xl warm-text italic mb-16 font-light">"Our kitchens are temples of fire and aroma, where we preserve the 300-year-old Nizami traditions in every clay handi."</p>
+                    
+                    <div class="space-y-16">
+                        <div class="flex gap-10 group">
+                            <div class="w-24 h-24 bg-white/5 rounded-[30px] flex items-center justify-center shrink-0 shadow-2xl group-hover:bg-saffron transition-all">
+                                <i data-lucide="flame" class="text-saffron w-10 h-10 group-hover:text-white"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-3xl font-black font-serif italic mb-4 text-gheeGold text-shadow">The Ancient Dum</h5>
+                                <p class="warm-text text-lg italic uppercase tracking-widest text-[11px] font-bold">A dough seal locks the soul of the spices for 12 hours.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-10 group">
+                            <div class="w-24 h-24 bg-white/5 rounded-[30px] flex items-center justify-center shrink-0 shadow-2xl group-hover:bg-saffron transition-all">
+                                <i data-lucide="award" class="text-saffron w-10 h-10 group-hover:text-white"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-3xl font-black font-serif italic mb-4 text-gheeGold text-shadow">Brass & Clay</h5>
+                                <p class="warm-text text-lg italic uppercase tracking-widest text-[11px] font-bold">Only traditional vessels touch our grains, ensuring earthy depth.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative" data-aos="zoom-in-left">
+                    <div class="relative rounded-[60px] overflow-hidden border-[20px] border-white/5 shadow-[0_60px_120px_-20px_rgba(0,0,0,1)] group">
+                        <img src="C:/Users/DELL/.gemini/antigravity/brain/d95a058a-c18b-49fc-a27b-5a403607d2df/hero_biryani_1767765254503.png" 
+                             alt="Process" class="w-full h-full object-cover grayscale-[0.2] contrast-125 group-hover:scale-110 transition-transform duration-1000">
+                    </div>
+                    <div class="absolute -bottom-16 -left-16 w-64 h-64 bg-saffron rounded-full flex flex-col items-center justify-center text-white p-10 shadow-3xl rotate-[-15deg] z-20 border-[8px] border-[#121212] animate-hero-zoom">
+                       <span class="text-[10px] uppercase tracking-widest font-black mb-2">Since 1990</span>
+                       <span class="text-4xl font-black font-serif italic leading-none">Auspicious Taste</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Call: The Indulgent Pill -->
+    <section class="py-60 px-10">
+        <div class="max-w-6xl mx-auto rounded-[100px] bg-[url('https://www.transparenttextures.com/patterns/dark-embroidery.png')] bg-biryaniGreen p-24 lg:p-40 text-center relative overflow-hidden shadow-[0_100px_150px_-50px_rgba(27,94,32,0.8)]" data-aos="flip-up">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div class="relative z-10">
+                <h3 class="text-6xl lg:text-[8rem] font-black font-serif text-white mb-12 italic leading-tight animate-pulse-glow">Indulge <br> <span class="text-saffron not-italic uppercase tracking-tighter">Your Soul</span></h3>
+                <p class="text-2xl lg:text-3xl text-offWhite/60 mb-20 max-w-3xl mx-auto font-light italic">The Nizami feast is waiting. 45 minutes to divinity.</p>
+                <div class="flex flex-col sm:flex-row gap-6 lg:gap-10 justify-center">
+                    <a href="tel:+911234567890" class="btn-indulge bg-saffron text-white text-xl lg:text-2xl px-8 lg:px-20 lg:scale-110">
+                        Auspicious Call
+                    </a>
+                    <a href="https://wa.me/911234567890" class="btn-indulge bg-white text-biryaniGreen text-xl lg:text-2xl px-8 lg:px-20 lg:scale-110">
+                        Feast Request
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer: Simple & Supportive -->
+    <footer class="bg-charcoal pt-40 pb-20 px-10 border-t border-white/5">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-24">
+            <div class="col-span-1 lg:col-span-1">
+                <span class="text-4xl font-black font-serif text-offWhite mb-10 block">The Royal <span class="text-saffron italic">Handi</span></span>
+                <p class="warm-text text-lg italic">The ultimate sanctuary for authentic Hyderabadi biryani lovers. No shortcuts, only slow-cook magic.</p>
+            </div>
+            <div>
+                <h5 class="font-black text-[10px] mb-12 text-saffron tracking-[0.5em] uppercase">The Journey</h5>
+                <ul class="space-y-6 text-offWhite/30 font-bold text-xs">
+                    <li><a href="#home" class="hover:text-white transition-colors">Our Legacy</a></li>
+                    <li><a href="#menu" class="hover:text-white transition-colors">Royal Plates</a></li>
+                    <li><a href="#secret" class="hover:text-white transition-colors">The Secret</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-black text-[10px] mb-12 text-saffron tracking-[0.5em] uppercase">The Kitchen</h5>
+                <p class="warm-text text-sm italic">
+                    123 Nizam Road, Hyderabad,<br>
+                    Telangana - 500001
+                </p>
+                <p class="mt-8 text-gheeGold font-black italic">Daily: 11:00 AM — 11:30 PM</p>
+            </div>
+            <div>
+                <h5 class="font-black text-[10px] mb-12 text-saffron tracking-[0.5em] uppercase">Direct Line</h5>
+                <p class="text-4xl font-black text-offWhite mb-6">+91 12345 67890</p>
+                <p class="text-offWhite/20 italic text-[11px] uppercase tracking-widest font-black">Call for Catering Requests</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-40 pt-12 border-t border-white/5 text-center text-white/10 text-[9px] font-black uppercase tracking-[0.5em]">
+            &copy; 2026 The Royal Handi. Stay Indulged.
+        </div>
+    </footer>
+
+    <!-- Mobile Sticky Navigation -->
+    <div class="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] z-[110] flex justify-between items-center bg-charcoal/90 backdrop-blur-xl border border-white/10 px-4 py-3 rounded-full shadow-2xl">
+        <a href="#menu" class="flex flex-col items-center gap-1 text-offWhite/60 hover:text-saffron transition-colors">
+            <i data-lucide="menu-square" class="w-6 h-6"></i>
+            <span class="text-[10px] uppercase font-bold tracking-tighter">Menu</span>
+        </a>
+        <a href="tel:+911234567890" class="flex flex-col items-center gap-1 text-offWhite/60 hover:text-saffron transition-colors">
+            <i data-lucide="phone" class="w-6 h-6"></i>
+            <span class="text-[10px] uppercase font-bold tracking-tighter">Call</span>
+        </a>
+        <div class="relative -top-10">
+            <a href="tel:+911234567890" class="w-20 h-20 bg-saffron rounded-full flex flex-col items-center justify-center text-white shadow-3xl transform hover:scale-105 transition-all">
+                <i data-lucide="shopping-bag" class="w-8 h-8 mb-1"></i>
+                <span class="text-[8px] uppercase font-black tracking-widest leading-none">Order</span>
+            </a>
+        </div>
+        <a href="https://wa.me/911234567890" class="flex flex-col items-center gap-1 text-offWhite/60 hover:text-saffron transition-colors">
+            <i data-lucide="message-circle" class="w-6 h-6"></i>
+            <span class="text-[10px] uppercase font-bold tracking-tighter">WhatsApp</span>
+        </a>
+        <a href="#home" class="flex flex-col items-center gap-1 text-offWhite/60 hover:text-saffron transition-colors">
+            <i data-lucide="arrow-up" class="w-6 h-6"></i>
+            <span class="text-[10px] uppercase font-bold tracking-tighter">Top</span>
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS with longer durations for drama
+        AOS.init({
+            duration: 1200, // Faster for mobile snappy feel
+            once: true,
+            easing: 'ease-out-quint',
+            disable: window.innerWidth < 768 ? 'mobile' : false // Optional: disable AOS on very slow mobiles if needed, but we'll try keeping it snappier
+        });
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Navbar Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
